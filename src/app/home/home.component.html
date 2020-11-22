@@ -4,14 +4,14 @@
     styleClass="p-datatable-striped">
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td style="padding: .5rem 1rem;">There is no other result page! Click reset or previous page button.</td>
+        <td style="padding: .5rem 1rem !important;">There is no other result page! Click reset or previous page button.</td>
       </tr>
     </ng-template>
     <ng-template pTemplate="caption">
       <form [formGroup]="form">
         <div class="header">
           <div class="left-actions">
-            <p-toggleButton formControlName="filter" onLabel="New Coins" offLabel="All Coins"
+            <p-toggleButton formControlName="filter" [onLabel]="'New Coins'" offLabel="All Coins"
               [style]="{'width': '90px','margin-right':'.5rem'}"></p-toggleButton>
             <p-selectButton [options]="status" formControlName="status" optionLabel="label" optionValue="value"
               styleClass="p-mr-2">
@@ -69,6 +69,8 @@
               [disabled]="disablePrevBtn"></button>
             <button pButton pRipple type="button" icon="pi pi-chevron-right" class="p-mr-2" (click)="next()"
               [disabled]="disableNextBtn"></button>
+            <!-- <p-button label="Alerts" badge="8"></p-button> -->
+            <p-splitButton icon="pi pi-bell" [model]="notificationActions" menuStyleClass="notification-menu"></p-splitButton>
           </div>
         </div>
       </form>

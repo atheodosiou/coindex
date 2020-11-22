@@ -176,5 +176,9 @@
     }
   }
 
+  ::ng-deep .p-menu.p-component.p-menu-overlay{
+    width: 142px !important;
+    left: -4.125rem !important;
+    top:32px !important;
+  }
 }
-

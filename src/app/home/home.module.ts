@@ -14,7 +14,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PercentagePipe } from '../shared/pipes/percentage.pipe';
 import { IsPositivePipe } from '../shared/pipes/isPositive.pipe';
-
+import {SplitButtonModule} from 'primeng/splitbutton';
 const PrimeNGModules = [
   TableModule,
   ButtonModule,
@@ -22,7 +22,8 @@ const PrimeNGModules = [
   DropdownModule,
   ReactiveFormsModule,
   ToggleButtonModule,
-  MultiSelectModule
+  MultiSelectModule,
+  SplitButtonModule
 ];
 
 @NgModule({
