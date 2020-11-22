@@ -1,24 +1,18 @@
 {
-  "name": "angular-electron",
-  "version": "9.0.2",
-  "description": "Angular 11 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "name": "COINDEX",
+  "version": "0.0.1",
+  "description": "A cryptocurrency tracker (desktop) application build with Angular 11 and Electron",
+  "homepage": "http://anastasios.theodosiou.me",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Anastasios Theodosiou",
+    "email": "anastasios.theodosiou@gmail.com"
   },
   "keywords": [
-    "angular",
-    "angular 11",
-    "electron",
-    "nodejs",
-    "typescript",
-    "spectron",
-    "eslint",
-    "sass",
-    "windows",
-    "mac",
-    "linux"
+    "coindex",
+    "crypto",
+    "cryptocurrencies",
+    "cryptocurrency",
+    "bitcoin"
   ],
   "main": "main.js",
   "private": true,
