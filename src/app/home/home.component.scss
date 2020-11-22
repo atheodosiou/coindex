@@ -1,0 +1,180 @@
+@import '../shared/styles/colors.scss';
+
+:host {
+ .container{
+     display: flex;
+     flex-direction: column;
+    margin-top: 35px;
+ } 
+
+
+.currency-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: -6px;
+
+    img{
+        margin-right: .5rem;
+    }
+}
+
+::ng-deep .p-datatable .p-datatable-header{
+    padding: 0rem .5rem;
+    // background-color: $powder-blue !important;
+}
+
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th{
+    padding: 0px !important;
+    padding-bottom: 3px !important;
+    font-size: 0.9rem !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr{
+    padding: 0rem .5rem !important;
+    // height: 35px !important;
+    // background-color: red !important;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td{
+    padding: 0px !important;
+    font-size: 0.9rem;
+}
+
+  .header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding:.25rem 0rem;
+
+      .left-actions{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .center-actions{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .right-actions{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+  }
+
+  ::ng-deep .p-button{
+      padding: .125rem .25rem !important;
+      color:$prussian-blue !important;
+      border-color:rgba($color: $prussian-blue, $alpha: 0.1) !important;
+    background-color:rgba($color: $prussian-blue, $alpha: 0.1) !important;
+      &:focus{
+          box-shadow: none !important;
+      }
+      &:hover{
+          background: rgba($color: $imperial-red, $alpha: 0.1) !important;
+          border-color:rgba($color: $prussian-blue, $alpha: 0.1) !important;
+      }
+  }
+
+  ::ng-deep .p-button.p-component.p-button-icon-only{
+    //   color: black !important;
+      background-color:rgba($color: $prussian-blue, $alpha: 0.1) !important;
+
+      &:hover{
+        background: rgba($color: $imperial-red, $alpha: 0.1) !important;
+      }
+  }
+
+  ::ng-deep .p-button.p-highlight{
+      background: $imperial-red !important;
+      border-color: $imperial-red !important;
+      color: $honeydew !important;
+  }
+
+  ::ng-deep .p-dropdown:not(.p-disabled):focus{
+    box-shadow: none !important;
+    outline: none !important;
+    }
+
+  ::ng-deep .p-dropdown:not(.p-disabled):hover{
+    background: rgba($color: $imperial-red, $alpha: 0.1) !important;
+  }
+
+  ::ng-deep .p-dropdown{
+    width: 75px !important;
+    border-color:rgba($color: $prussian-blue, $alpha: 0.2) !important;
+    background-color:rgba($color: $prussian-blue, $alpha: 0.1) !important;
+
+    div.p-dropdown-trigger{
+      display: none;
+    }
+    &:focus{
+        box-shadow: none !important;
+        outline: none !important;
+        }
+    }
+  ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight{
+    background: rgba($color: $imperial-red, $alpha: 0.1) !important;
+  }
+
+
+  ::ng-deep .p-multiselect {
+    width: 170px;
+    height: 27px !important;
+    border-color:rgba($color: $prussian-blue, $alpha: 0.2) !important;
+    background-color:rgba($color: $prussian-blue, $alpha: 0.1) !important;
+    &:hover{
+      background: rgba($color: $imperial-red, $alpha: 0.1) !important;
+      border-color:rgba($color: $prussian-blue, $alpha: 0.2) !important;
+    }
+
+    .p-multiselect-label-container{
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+
+      .p-multiselect-label{
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+
+        .over-max-selected-items-label{
+          margin-top: -3px !important;
+        }
+
+        .selected-items {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+          text-overflow: ellipsis !important;
+          word-wrap: unset;
+
+          .currency-item{
+            margin-right: .25rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            padding-top: 6px !important;
+
+            &:last-child{
+              margin-left: 0px !important;
+            }
+
+            img{
+              height: 15px !important;
+              margin-right: 0.125rem !important;
+            }
+
+            span.name{
+              margin-top: -3px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+

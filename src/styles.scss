@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import './app/shared/styles/colors.scss';
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+  font-family: 'Montserrat';
+}
+
+/* CAN (MUST) BE REMOVED ! Sample Global style */
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-app-region: no-drag;
+  // background: url(./assets/background.jpg) no-repeat center fixed;
+  // -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  // background-size: cover; /* version standardisée */
+
+  background-color: whitesmoke;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $honeydew;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $imperial-red;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $imperial-red;
+}

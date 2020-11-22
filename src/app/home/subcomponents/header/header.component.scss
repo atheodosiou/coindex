@@ -1,0 +1,45 @@
+@import '../../../shared/styles/colors.scss';
+
+.header-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $prussian-blue;
+    padding: .5rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100vw;
+    -webkit-app-region: drag; 
+    
+    .name{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-weight: bold;
+        .first{
+            color:$imperial-red
+        }
+        .last{
+            color: $honeydew;
+        }
+    }
+
+    .actions{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        color: $honeydew;
+        width: 40px;
+        -webkit-app-region: no-drag;
+        .close-btn:hover{
+            cursor: pointer;
+        }
+        .minimize-btn:hover{
+            cursor: pointer;
+        }
+    }
+}

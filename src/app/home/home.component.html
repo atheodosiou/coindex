@@ -1,0 +1,150 @@
+<header></header>
+<div class="container">
+  <p-table [columns]="cols" [value]="currencies" [scrollable]="true" scrollHeight="803px"
+    styleClass="p-datatable-striped">
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td style="padding: .5rem 1rem;">There is no other result page! Click reset or previous page button.</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="caption">
+      <form [formGroup]="form">
+        <div class="header">
+          <div class="left-actions">
+            <p-toggleButton formControlName="filter" onLabel="New Coins" offLabel="All Coins"
+              [style]="{'width': '90px','margin-right':'.5rem'}"></p-toggleButton>
+            <p-selectButton [options]="status" formControlName="status" optionLabel="label" optionValue="value"
+              styleClass="p-mr-2">
+            </p-selectButton>
+            <p-selectButton [options]="intervals" formControlName="interval" optionLabel="label" optionValue="value"
+              styleClass="p-mr-2">
+            </p-selectButton>
+            <p-multiSelect [options]="coinIds" formControlName="ids" defaultLabel="Select Coins" optionLabel="name"
+              filterBy="id" class="multiselect-custom" [virtualScroll]="true" [filter]="true" [itemSize]="34"
+              filterMatchMode="startsWith" [showTransitionOptions]="'10ms'" [hideTransitionOptions]="'350ms'"
+              [maxSelectedLabels]="2" [resetFilterOnHide]="true" styleClass="p-mr-2">
+              <ng-template let-value pTemplate="selectedItems">
+                <div class="selected-items" *ngIf="form.get('ids').value.length>0 && form.get('ids').value.length<=2">
+                  <div class="currency-item" *ngFor="let option of form.get('ids').value">
+                    <img [src]="option.logo_url" />
+                    <span class="name">{{option.id}}</span>
+                  </div>
+                </div>
+                <div *ngIf="form.get('ids').value.length>2" class="over-max-selected-items-label">
+                  {{form.get('ids').value.length}} selected items
+                </div>
+                <div *ngIf="!form.get('ids').value || form.get('ids').value.length === 0" class="currency-placeholder">
+                  Select Coins
+                </div>
+              </ng-template>
+              <ng-template let-coin pTemplate="item">
+                <div class="currency-item">
+                  <img [src]="coin.logo_url" style="height: 15px;" />
+                  <span class="name">{{coin.name}}</span>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+            <p-dropdown [options]="fiatCurrencies" formControlName="currency" optionLabel="label"
+              [style]="{height:'27px',padding:'0px'}" styleClass="p-mr-2">
+              <ng-template pTemplate="selectedItem">
+                <div class="currency-item" *ngIf="form.get('currency')?.value">
+                  <img [src]="form.get('currency')?.value?.flag" style="width: 16px; border-radius: 8px;" />
+                  <div>{{form.get('currency')?.value?.code}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-currency pTemplate="item">
+                <div class="currency-item">
+                  <img [src]="currency.flag" style="width: 20px; border-radius: 10px;" />
+                  <div>{{currency.code}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+            <button pButton pRipple type="button" icon="pi pi-filter-slash" (click)="clearFilters()"></button>
+          </div>
+          <div class="center-actions">
+
+          </div>
+          <div class="right-actions">
+            <button pButton pRipple type="button" icon="pi pi-chevron-left" class="p-mr-2" (click)="prev()"
+              [disabled]="disablePrevBtn"></button>
+            <button pButton pRipple type="button" icon="pi pi-chevron-right" class="p-mr-2" (click)="next()"
+              [disabled]="disableNextBtn"></button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [ngStyle]="col.style">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-c let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns" [ngStyle]="col.style">
+          <ng-container *ngIf="col.field==='rank'">
+            {{c[col.field]}}
+          </ng-container>
+          <ng-container *ngIf="col.field==='name'">
+            <div class="p-d-flex p-flex-row p-ai-center p-jc-start">
+              <div class="img p-mr-1">
+                <img [src]="c['logo_url']" alt="logo url" style="width: 24px; height: 24px;">
+              </div>
+              <div class="p-d-flex p-flex-column">
+                <div class="p-text-normal">
+                  {{c['name']}}
+                </div>
+                <div class="p-text-light" style="font-size: .7rem;">
+                  {{c['currency']}}
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="col.field==='market_cap'">
+            {{c[col.field]|currency:form.get('currency')?.value?.code}}
+          </ng-container>
+          <ng-container *ngIf="col.field==='market_cap_change'">
+            <span [ngStyle]="{'color': c[col.field]>0 ? 'green' : 'red'}">
+              {{c[col.field]|currency:form.get('currency')?.value?.code}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field==='market_cap_change_pct'">
+            <span [ngStyle]="{'color': c[col.field]>0 ? 'green' : 'red'}">
+              {{c[col.field]|percentage}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field==='volume'">
+            {{c[col.field]|currency:form.get('currency')?.value?.code}}
+          </ng-container>
+          <ng-container *ngIf="col.field==='volume_change'">
+            <span [ngStyle]="{'color': c[col.field]>0 ? 'green' : 'red'}">
+              {{c[col.field]|currency:form.get('currency')?.value?.code}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field==='volume_change_pct'">
+            <span [ngStyle]="{'color': c[col.field]>0 ? 'green' : 'red'}">
+              {{c[col.field]|percentage}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field==='price'">
+            {{c[col.field]|currency:form.get('currency')?.value?.code}}
+          </ng-container>
+          <ng-container *ngIf="col.field==='price_change'">
+            <span [ngStyle]="{'color': c[col.field]>0 ? 'green' : 'red'}">
+              {{c[col.field]|currency:form.get('currency')?.value?.code}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field==='price_change_pct'">
+            <span [ngStyle]="{'color': c[col.field]>0 ? 'green' : 'red'}">
+              {{c[col.field]|percentage}}
+            </span>
+          </ng-container>
+          <ng-container *ngIf="col.field==='price_timestamp'">
+            {{c[col.field]|date:'hh:mm'}}
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
