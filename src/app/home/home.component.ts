@@ -4,6 +4,7 @@ import { RestService } from '../shared/services/rest.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
+import { SidebarService } from '../shared/services/sidebar.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   coinmeta: any[];
   coinIds: { id: string, name: string, logo_url: string }[];
   initialFormValue: any;
+  hasNotifications: boolean = true;
 
   intervals: any[] = [
     { label: '1H', value: '1h' },
@@ -67,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       label: 'Create Alert', icon: 'pi pi-plus'
     }
   ];
-  constructor(private router: Router, private restService: RestService, private fb: FormBuilder) {
+  constructor(private router: Router, private restService: RestService, private fb: FormBuilder, private sidebarService:SidebarService) {
     this.form = this.fb.group({
       interval: [this.intervals[1].value],
       status: [this.status[0].value],
@@ -77,21 +79,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.form.valueChanges.subscribe(res => {
       this.selectedIds = (res.ids as any[]).map(x => x.id).join(',');
+      this.sidebarService.onCurrencyChanged.next(res.currency);
       this.fetchData();
     })
   }
 
   ngOnInit(): void {
-    // this.fetchData();
-    // if (!this.coinmeta || this.coinmeta.length === 0) {
-    //   this.restService.getCurrenciesMetadata().subscribe(res => {
-    //     this.coinmeta = res;
-    //     this.coinIds = res.map(x => { return { id: x.id, name: x.name, logo_url: x.logo_url } });
-    //     this.form.controls['ids'].enable();
-    //     console.log(this.coinIds);
-    //   })
-    // }
-
+    this.fetchData();
+    if (!this.coinmeta || this.coinmeta.length === 0) {
+      this.restService.getCurrenciesMetadata().subscribe(res => {
+        this.coinmeta = res;
+        this.coinIds = res.map(x => { return { id: x.id, name: x.name, logo_url: x.logo_url } });
+        this.form.controls['ids'].enable();
+        this.sidebarService.onMetaData.next(res);
+      })
+    }
   }
 
   clearFilters() {
@@ -118,8 +120,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.page += 1;
     if (this.disablePrevBtn === true) {
       this.disablePrevBtn = false;
-    }
+    } 
     this.fetchData();
+  }
+
+
+  onBellClick() {
+    this.sidebarService.oppend.next(true);
+    this.hasNotifications = false;
   }
 
   private fetchData() {
@@ -163,6 +171,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
         return x;
       });
+      this.sidebarService.onData.next(this.currencies);
     }, error => {
       console.error(error);
     });

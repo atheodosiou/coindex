@@ -1,3 +1,84 @@
-:host {
+@import './shared/styles/colors.scss';
+
+::ng-deep .p-sidebar-right{
+    max-height: calc(100% - 35px);
+    background-color: #FFFFFF;
+    margin-top: 35px;
+    .p-sidebar-content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        ul{
+            margin: .5rem 0rem;
+            padding: 0;
+            list-style: none;
+            height: 100%;
+            overflow: auto;
+
+            li{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                border-radius: 4px;
+                background-color: white;
+                border: 1px solid rgba($color: $prussian-blue, $alpha: 0.1) !important;
+                padding: 0.25rem;
+                margin-bottom: .5rem;
+
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    background-color: rgba($color: $prussian-blue, $alpha: 0.1);
+                    transition: background-color .2s ease;
+                }
+
+                img{
+                    width: 20px;
+                }
+                .data{
+                    flex: 1;
+                    margin-left: .25rem;
+                    margin-right: .25rem;
+                    flex-direction: column;
+                    .alert{
+                        font-size: 0.7rem;
+                    }
+                    .message{
+                        font-size: 0.6rem;
+                    }
+                }
+                .actions{
+                    i.btn-action{
+                        margin-right: .125rem;
+                        cursor: pointer;
+
+                        &:hover{
+                            color:$imperial-red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ::ng-deep .p-button{
+        color:$honeydew;
+        background-color:rgba($color: $prussian-blue, $alpha: 0.85) !important;
+        border-color: rgba($color: $prussian-blue, $alpha: 0.85) !important;
+        &:focus{
+            box-shadow: none !important;
+        }
+        &:hover{
+            background-color:rgba($color: $prussian-blue, $alpha: 1) !important;
+            border-color: rgba($color: $prussian-blue, $alpha: 1) !important;
+        }
+    }
+  }
+
   
-}

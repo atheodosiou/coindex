@@ -175,10 +175,26 @@
       }
     }
   }
+  
+  ::ng-deep .p-overlay-badge  {
+    &:hover{
+      cursor: pointer;
+    }
+  }
 
-  ::ng-deep .p-menu.p-component.p-menu-overlay{
-    width: 142px !important;
-    left: -4.125rem !important;
-    top:32px !important;
+  ::ng-deep .p-overlay-badge .p-badge{
+    background-color: $imperial-red !important;
+    color: #ffffff !important;
+    font-size: 0.55rem !important;
+    font-weight: 700 !important;
+    min-width: 15px !important;
+    height: 15px !important;
+    line-height: 13px !important;
+    margin-top: .35rem !important;
+    margin-left: .25rem !important;
+    
+    &:hover{
+      cursor: pointer;
+    }
   }
 }

@@ -1,1 +1,26 @@
+<p-sidebar [(visible)]="visible" position="right" [baseZIndex]="10000" [showCloseIcon]="false">
+    <div class="header">Alerts</div>
+    <ul *ngIf="notifications">
+        <li *ngFor="let notification of notifications">
+            <img [src]="notification?.logo_url" alt="coin logo">
+            <div class="data">
+                <div class="alert">[27/11/2020 22:35] < 14500 (14298)</div>
+                        <div class="message p-text-secondary">I shoud by Bitcoins</div>
+                </div>
+                <div class="actions">
+                    <i class="fas fa-times btn-action" (click)="markAsRead(notification)"></i>
+                </div>
+        </li>
+    </ul>
+    <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Create new" class="p-button-sm"
+        (click)="visible=false;showAlertDialog=true;"></button>
+</p-sidebar>
 <router-outlet></router-outlet>
+
+<p-dialog header="Create new alert" [(visible)]="showAlertDialog" [style]="{width: '50vw'}" [baseZIndex]="10000" [modal]="true" [closeOnEscape]="false" [closable]="false" [draggable]="false">
+    
+    <ng-template pTemplate="footer">
+        <p-button (click)="displayBasic=false" label="Cancel" styleClass="p-button-text p-button-secondary" (onClick)="showAlertDialog=false;"></p-button>
+        <p-button (click)="displayBasic=false" label="Ok" styleClass="p-button-text" (onClick)="createAlert()"></p-button>
+    </ng-template>
+</p-dialog>

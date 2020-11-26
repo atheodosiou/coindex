@@ -4,7 +4,8 @@
     styleClass="p-datatable-striped">
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td style="padding: .5rem 1rem !important;">There is no other result page! Click reset or previous page button.</td>
+        <td style="padding: .5rem 1rem !important;">There is no other result page! Click reset or previous page button.
+        </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="caption">
@@ -65,12 +66,14 @@
 
           </div>
           <div class="right-actions">
+            <span class="p-overlay-badge p-mr-3" (click)="onBellClick()">
+              <i class="pi pi-bell"></i>
+              <span *ngIf="hasNotifications" class="p-badge">2</span>
+            </span>
             <button pButton pRipple type="button" icon="pi pi-chevron-left" class="p-mr-2" (click)="prev()"
               [disabled]="disablePrevBtn"></button>
             <button pButton pRipple type="button" icon="pi pi-chevron-right" class="p-mr-2" (click)="next()"
               [disabled]="disableNextBtn"></button>
-            <!-- <p-button label="Alerts" badge="8"></p-button> -->
-            <p-splitButton icon="pi pi-bell" [model]="notificationActions" menuStyleClass="notification-menu"></p-splitButton>
           </div>
         </div>
       </form>
